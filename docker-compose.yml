@@ -9,11 +9,14 @@ services:
     ports:
     - 8000:80
   mongodb:
-    image: mongo
+    image: mongo:latest
     environment:
       MONGODB_USER: root
       MONGODB_PASS: root
       MONGODB_DB: symfony
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: symfony
     stdin_open: true
     tty: true
     volumes:
