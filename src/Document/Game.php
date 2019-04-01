@@ -102,7 +102,7 @@ class Game
     /**
      * @return bool|null
      */
-    public function getWin()
+    public function isWin()
     {
         return $this->win;
     }

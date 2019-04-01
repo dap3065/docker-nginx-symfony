@@ -12,15 +12,16 @@ services:
     image: mongo:latest
     environment:
       MONGODB_USER: root
-      MONGODB_PASS: root
+      MONGODB_PASS: example
       MONGODB_DB: symfony
       MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_PASSWORD: example
       MONGO_INITDB_DATABASE: symfony
     stdin_open: true
     tty: true
     volumes:
       - mongodata:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
     ports:
     - 27017:27017
 volumes:

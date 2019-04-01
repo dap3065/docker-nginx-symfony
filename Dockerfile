@@ -40,6 +40,10 @@ RUN chmod +w -R var/log
 
 RUN chown -R www-data var/log
 
+RUN chmod +w -R var/cache
+
+RUN chown -R www-data var/cache
+
 # Configure supervisor
 COPY supervisord.conf /etc/supervisor/supervisord.conf
 

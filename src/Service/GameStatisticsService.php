@@ -2,38 +2,39 @@
 
 namespace App\Service;
 
-use Doctrine\ORM\EntityManager;
+use App\Document\Game;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 class GameStatisticsService
 {
     /**
-     * @var EntityManager
+     * @var DocumentManager
      */
-    private $entityManager;
+    private $documentManager;
 
     /**
      * GameStatisticsService constructor.
-     * @param EntityManager $em
+     * @param DocumentManager $dm
      */
-    public function __construct(EntityManager $em)
+    public function __construct(DocumentManager $dm)
     {
-        $this->entityManager = $em;
+        $this->documentManager = $dm;
     }
 
     /**
-     * @return EntityManager
+     * @return DocumentManager
      */
-    public function getEntityManager()
+    public function getDocumentManager()
     {
-        return $this->entityManager;
+        return $this->documentManager;
     }
 
     /**
-     * @param EntityManager $entityManager
+     * @param DocumentManager $dm
      */
-    public function setEntityManager(EntityManager $entityManager)
+    public function setDocumentManager(DocumentManager $dm)
     {
-        $this->entityManager = $entityManager;
+        $this->documentManager = $dm;
     }
 
     /**
@@ -44,7 +45,7 @@ class GameStatisticsService
         $statistics = [];
         $statistics['wins'] = 0;
         $statistics['total'] = 0;
-        $games = $this->entityManager->getRepository(Game::class)->findAll();
+        $games = $this->documentManager->getRepository(Game::class)->findAll();
         foreach($games as $game) {
             /** @var Game $game */
             if ($userIp == $game->getUser()) {

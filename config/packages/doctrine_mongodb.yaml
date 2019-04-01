@@ -6,7 +6,7 @@ doctrine_mongodb:
             server: '%env(resolve:MONGODB_URL)%'
             options:
                 username: root
-                password: root
+                password: example
                 authSource: '%env(resolve:MONGODB_DB)%'
     default_database: '%env(resolve:MONGODB_DB)%'
     document_managers:
@@ -19,3 +19,5 @@ doctrine_mongodb:
                     dir: '%kernel.project_dir%/src/Document'
                     prefix: 'App\Document'
                     alias: App
+    hydrator_namespace:   Hydrators
+    hydrator_dir:         "%kernel.cache_dir%/doctrine/odm/mongodb/Hydrators"
